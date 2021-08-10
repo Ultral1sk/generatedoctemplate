@@ -1,0 +1,345 @@
+import React from "react";
+import Docxtemplater from "docxtemplater";
+import PizZip from "pizzip";
+import PizZipUtils from "pizzip/utils/index.js";
+import { saveAs } from "file-saver";
+import tesla from "./tesla.jpeg";
+
+const App = () => {
+  function generate() {
+    var docs = document.getElementById("doc");
+    var reader = new FileReader();
+    if (docs.files.length === 0) {
+      alert("No files selected");
+    }
+    reader.readAsBinaryString(docs.files.item(0));
+
+    reader.onerror = function (evt) {
+      console.log("error reading file", evt);
+      alert("error reading file" + evt);
+    };
+    reader.onload = function (evt) {
+      const content = evt.target.result;
+      var zip = new PizZip(content);
+      // Same code as in the main HTML example.
+      var doc;
+      try {
+        doc = new Docxtemplater(zip, {
+          nullGetter() {
+            return "";
+          },
+          paragraphLoop: true,
+        });
+      } catch (error) {
+        // Catch compilation errors (errors caused by the compilation of the template : misplaced tags)
+        console.log(error);
+      }
+
+      doc.setData({
+        facility_name: "John",
+        site_name: "Carlo-Schmidt-Allee 3",
+        subject_name: "subject_name example",
+        manufacturer: "Doe",
+        material: "Vibranium",
+        project_name: "0652455478",
+        welding_process: "process",
+        welding_preparation: "preparation",
+        // drawing_no: "New Website",
+        heat_treatment: "treatment high",
+        operator: "Some operator",
+        operator_level: "Levle 3",
+        operator_certno: "000003",
+        operator_date: `${new Date()}`,
+        inspector: "Some inspector",
+        inspector_level: "Levle 2",
+        inspector_certno: "000002",
+        inspector_date: `${new Date()}`,
+        supervisor: "Some supervisor",
+        supervisor_level: "Levle 1",
+        supervisor_certno: "000001",
+        supervisor_date: `${new Date()}`,
+        revision: "revision no. 12345",
+        report_no: "123457",
+        customer_no: "007",
+        order_no: "000007",
+        order_no_customer: "007 00007",
+        customer_name: "Somename",
+        customer: {
+          customer_street: "hindenburgstrase",
+          customer_street_no: "somenumber 12345",
+          customer_city: "Essen",
+          customer_zipcode: "6330",
+          customer_country: "Germany",
+        },
+        isotop: [
+          {
+            isotop_type: "Duk",
+            isotop_device_serial_no: "DukSoftware",
+            isotop_device_activity: "DS0",
+          },
+        ],
+        generator: [
+          {
+            generator_device_name: "Verbatim",
+            generator_device_serial_no: "00007",
+            generator_device_model: "XXP10",
+          },
+        ],
+        tube_current001: "currentTube001value",
+        tube_voltage001: "voltageTube001value",
+        processing001: "processing001Example",
+        scope_of_test: "scope of text example",
+        surface_cond001: "surface condt001 example",
+        screens_front001: "screensfont001 example",
+        screens_back001: "screens_back001 example",
+        iqi001: "iqi001 example",
+        iqi_placement001: "iqi_placement001 example",
+        film_type001: "film_type001 example",
+        inspectioninstruction: "instpectionInstruction example",
+        evaluationstandard: "evaluationstandard example",
+        evaluation_group: "evaluation group example",
+        acceptance_limit: "acceptance limit example",
+        technique_results: [
+          {
+            technique_no: "technique 123 exmp",
+            technique_name: "tecnhq name exmp",
+            technique_activity: "actvty example",
+            technique_tube_voltage001: "tube vol 001 exmpl",
+            technique_current001: "current001 empl",
+            technique_focal_spot_size001: "size 001 exampl",
+            technique_film_type001: "technq film type expll 001",
+            technique_film_class001: "film class 001 expl",
+            technique_front001: "tecnq front 001 fexmpl",
+            technique_back001: "back techn 001 expl",
+            technique_iqi_material001: "iqi material expl",
+            technique_dev_method001: "device method example",
+          },
+        ],
+        test_results: [
+          {
+            point_no: "John",
+            inspect_pos: "Doe",
+            welder_no001: "weld 007",
+            welder_no_pdf001: "welder pdf 001",
+            dimension001: "dimension exampple 001",
+            point_dimension: "pointdimension exampple 001",
+            dn001: "dn 001 example",
+            diameter_nominal: "diameter nominal example",
+            density001: "density001 example if TRUE",
+            density_pdf001: "pdf example if FALSE",
+            iqi001: "iqi001 example if TRUE",
+            iqi_pdf001: "iqi001 example if FALSE",
+            d2011001: "d2011001 test 1",
+            d2013001: "d2013001 test 2",
+            d2016001: "d2016001 test 3",
+            d3041001: "d3041001 test 4",
+            d401001: "d401001 test 5",
+            d402001: "d402001 test 6",
+            d5011001: "d5011001 test 7",
+            d5012001: "d5012001 test 8",
+            d5013001: "d5013001 test 9",
+            d515001: "d515001 test 10",
+            d517001: "d517001 test 11",
+            exp_time001: `${new Date()} if TRUE`,
+            exp_time_pdf001: `${new Date()} if FALSE PDF `,
+            exp_arra001: "exparra 001 if TRUE",
+            exp_arra_pdf001: "exparra 001 if FALSE pdf",
+            ffd001: "ffd001 example if TRUE",
+            ffd_pdf001: "ffa pdf001 if FALSE pdf",
+            acceptable001: false,
+            remark001: "This is a remark for the report",
+          },
+          {
+            point_no: "John",
+            inspect_pos: "Doe",
+            welder_no001: "weld 007",
+            welder_no_pdf001: "welder pdf 001",
+            dimension001: "dimension exampple 001",
+            point_dimension: "pointdimension exampple 001",
+            dn001: "dn 001 example",
+            diameter_nominal: "diameter nominal example",
+            density001: "density001 example if TRUE",
+            density_pdf001: "pdf example if FALSE",
+            iqi001: "iqi001 example if TRUE",
+            iqi_pdf001: "iqi001 example if FALSE",
+            d2011001: "d2011001 test 1",
+            d2013001: "d2013001 test 2",
+            d2016001: "d2016001 test 3",
+            d3041001: "d3041001 test 4",
+            d401001: "d401001 test 5",
+            d402001: "d402001 test 6",
+            d5011001: "d5011001 test 7",
+            d5012001: "d5012001 test 8",
+            d5013001: "d5013001 test 9",
+            d515001: "d515001 test 10",
+            d517001: "d517001 test 11",
+            exp_time001: `${new Date()} if TRUE`,
+            exp_time_pdf001: `${new Date()} if FALSE PDF `,
+            exp_arra001: "exparra 001 if TRUE",
+            exp_arra_pdf001: "exparra 001 if FALSE pdf",
+            ffd001: "ffd001 example if TRUE",
+            ffd_pdf001: "ffa pdf001 if FALSE pdf",
+            acceptable001: true,
+            remark001: "This is a remark for the report",
+          },
+          {
+            point_no: "John",
+            inspect_pos: "Doe",
+            welder_no001: "weld 007",
+            welder_no_pdf001: "welder pdf 001",
+            dimension001: "dimension exampple 001",
+            point_dimension: "pointdimension exampple 001",
+            dn001: "dn 001 example",
+            diameter_nominal: "diameter nominal example",
+            density001: "density001 example if TRUE",
+            density_pdf001: "pdf example if FALSE",
+            iqi001: "iqi001 example if TRUE",
+            iqi_pdf001: "iqi001 example if FALSE",
+            d2011001: "d2011001 test 1",
+            d2013001: "d2013001 test 2",
+            d2016001: "d2016001 test 3",
+            d3041001: "d3041001 test 4",
+            d401001: "d401001 test 5",
+            d402001: "d402001 test 6",
+            d5011001: "d5011001 test 7",
+            d5012001: "d5012001 test 8",
+            d5013001: "d5013001 test 9",
+            d515001: "d515001 test 10",
+            d517001: "d517001 test 11",
+            exp_time001: `${new Date()} if TRUE`,
+            exp_time_pdf001: `${new Date()} if FALSE PDF `,
+            exp_arra001: "exparra 001 if TRUE",
+            exp_arra_pdf001: "exparra 001 if FALSE pdf",
+            ffd001: "ffd001 example if TRUE",
+            ffd_pdf001: "ffa pdf001 if FALSE pdf",
+            acceptable001: false,
+            remark001: "This is a remark for the report",
+          },
+          {
+            point_no: "John",
+            inspect_pos: "Doe",
+            welder_no001: "weld 007",
+            welder_no_pdf001: "welder pdf 001",
+            dimension001: "dimension exampple 001",
+            point_dimension: "pointdimension exampple 001",
+            dn001: "dn 001 example",
+            diameter_nominal: "diameter nominal example",
+            density001: "density001 example if TRUE",
+            density_pdf001: "pdf example if FALSE",
+            iqi001: "iqi001 example if TRUE",
+            iqi_pdf001: "iqi001 example if FALSE",
+            d2011001: "d2011001 test 1",
+            d2013001: "d2013001 test 2",
+            d2016001: "d2016001 test 3",
+            d3041001: "d3041001 test 4",
+            d401001: "d401001 test 5",
+            d402001: "d402001 test 6",
+            d5011001: "d5011001 test 7",
+            d5012001: "d5012001 test 8",
+            d5013001: "d5013001 test 9",
+            d515001: "d515001 test 10",
+            d517001: "d517001 test 11",
+            exp_time001: `${new Date()} if TRUE`,
+            exp_time_pdf001: `${new Date()} if FALSE PDF `,
+            exp_arra001: "exparra 001 if TRUE",
+            exp_arra_pdf001: "exparra 001 if FALSE pdf",
+            ffd001: "ffd001 example if TRUE",
+            ffd_pdf001: "ffa pdf001 if FALSE pdf",
+            acceptable001: false,
+            remark001: "This is a remark for the report",
+          },
+          {
+            point_no: "John",
+            inspect_pos: "Doe",
+            welder_no001: "weld 007",
+            welder_no_pdf001: "welder pdf 001",
+            dimension001: "dimension exampple 001",
+            point_dimension: "pointdimension exampple 001",
+            dn001: "dn 001 example",
+            diameter_nominal: "diameter nominal example",
+            density001: "density001 example if TRUE",
+            density_pdf001: "pdf example if FALSE",
+            iqi001: "iqi001 example if TRUE",
+            iqi_pdf001: "iqi001 example if FALSE",
+            d2011001: "d2011001 test 1",
+            d2013001: "d2013001 test 2",
+            d2016001: "d2016001 test 3",
+            d3041001: "d3041001 test 4",
+            d401001: "d401001 test 5",
+            d402001: "d402001 test 6",
+            d5011001: "d5011001 test 7",
+            d5012001: "d5012001 test 8",
+            d5013001: "d5013001 test 9",
+            d515001: "d515001 test 10",
+            d517001: "d517001 test 11",
+            exp_time001: `${new Date()} if TRUE`,
+            exp_time_pdf001: `${new Date()} if FALSE PDF `,
+            exp_arra001: "exparra 001 if TRUE",
+            exp_arra_pdf001: "exparra 001 if FALSE pdf",
+            ffd001: "ffd001 example if TRUE",
+            ffd_pdf001: "ffa pdf001 if FALSE pdf",
+            acceptable001: false,
+            remark001: "This is a remark for the report",
+          },
+          {
+            point_no: "John",
+            inspect_pos: "Doe",
+            welder_no001: "weld 007",
+            welder_no_pdf001: "welder pdf 001",
+            dimension001: "dimension exampple 001",
+            point_dimension: "pointdimension exampple 001",
+            dn001: "dn 001 example",
+            diameter_nominal: "diameter nominal example",
+            density001: "density001 example if TRUE",
+            density_pdf001: "pdf example if FALSE",
+            iqi001: "iqi001 example if TRUE",
+            iqi_pdf001: "iqi001 example if FALSE",
+            d2011001: "d2011001 test 1",
+            d2013001: "d2013001 test 2",
+            d2016001: "d2016001 test 3",
+            d3041001: "d3041001 test 4",
+            d401001: "d401001 test 5",
+            d402001: "d402001 test 6",
+            d5011001: "d5011001 test 7",
+            d5012001: "d5012001 test 8",
+            d5013001: "d5013001 test 9",
+            d515001: "d515001 test 10",
+            d517001: "d517001 test 11",
+            exp_time001: `${new Date()} if TRUE`,
+            exp_time_pdf001: `${new Date()} if FALSE PDF `,
+            exp_arra001: "exparra 001 if TRUE",
+            exp_arra_pdf001: "exparra 001 if FALSE pdf",
+            ffd001: "ffd001 example if TRUE",
+            ffd_pdf001: "ffa pdf001 if FALSE pdf",
+            acceptable001: false,
+            remark001: "This is a remark for the report",
+          },
+        ],
+      });
+      try {
+        // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
+        doc.render();
+      } catch (error) {
+        // Catch rendering errors (errors relating to the rendering of the template : angularParser throws an error)
+        console.log(error);
+      }
+
+      var out = doc.getZip().generate({
+        type: "blob",
+        mimeType:
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      }); //Output the document using Data-URI
+      saveAs(out, "output.docx");
+    };
+  }
+
+  return (
+    <>
+      <input type="file" id="doc" />
+      <hr />
+      <button onClick={generate}>Generate document</button>;
+    </>
+  );
+};
+
+export default App;
