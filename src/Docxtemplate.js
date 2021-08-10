@@ -8,7 +8,7 @@ import PizZipUtils from "pizzip/utils/index.js";
 import data from "./data.json";
 
 const Docxtemplate = () => {
-  const generate = () => {
+  const generateDocx = () => {
     // target input to extract the uploaded file.
     const docs = document.getElementById("doc");
 
@@ -32,7 +32,6 @@ const Docxtemplate = () => {
             if (error) {
               return reject(error);
             }
-            // return console.log(resolve(content));
             return resolve(content);
           });
         });
@@ -48,19 +47,16 @@ const Docxtemplate = () => {
           image.width = 200;
           image.height = 100;
           image.onload = function (img, val) {
-            console.log(img, val);
-
             resolve([image.width, image.height]);
           };
           image.onerror = function (e) {
-            // console.log("img, tagValue, tagName : ", img, tagValue, tagName);
             alert("An error occured while loading " + tagValue);
             reject(e);
           };
         });
       };
 
-      // neccessary for images rendering  but currently not available because it is a paid one.
+      // necessary for images rendering  but currently not available because it is a paid one.
       const imageModule = new ImageModule(opts);
       const zip = new PizZip(content);
       const doc = new Docxtemplater(zip, {
@@ -71,7 +67,6 @@ const Docxtemplate = () => {
       });
       /* Data rendering */
       doc.resolveData(data).then(function () {
-        console.log("ready");
         doc.render();
         const out = doc.getZip().generate({
           type: "blob",
@@ -80,15 +75,13 @@ const Docxtemplate = () => {
 
         saveAs(out, "generated.docx");
       });
-
-      //   });
     };
   };
   return (
     <div>
       <input type="file" id="doc" />
       <hr />
-      <button onClick={generate}>Generate document</button>;
+      <button onClick={generateDocx}>Generate DOCX document</button>;
     </div>
   );
 };
