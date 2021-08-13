@@ -1,11 +1,13 @@
 import React from "react";
 
 import Docxtemplate from "./Docxtemplate";
+import DTITComponent from "./DTIComponent";
 
 const App = () => {
   return (
     <>
-      <Docxtemplate />
+      <DTITComponent />
+      {/* <Docxtemplate /> */}
     </>
   );
 };
