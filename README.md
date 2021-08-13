@@ -12,14 +12,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Folder Structure
 
-- (src/Docxtemplate.js)
-  Contains the business logic of DOCX templater that's supposed to be tested regarding this research.
+- (src/Docxtemplate.js / DTIComponent.js)
+  Contain the business logic of DOCX templater package that's supposed to be tested regarding this research.
 
 - (src/templates)
-  The DOCX file that we are going to use for this example.
+  The DOCX files that we are going to use for this example.
   One needs to just upload the document via the provided input on the client side.
 
-- (src/data.json)
+1. DocxtemplaterSimpleExample "Simple" example
+2. Docxtemplater(dynamic_fields_example) More complex example
+
+- (src/data.json / dtidata.json)
   Dummy data used for this template (self-explainatory enough).
 
 Runs the app in the development mode.\
