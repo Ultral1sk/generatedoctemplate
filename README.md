@@ -19,8 +19,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   The DOCX files that we are going to use for this example.
   One needs to just upload the document via the provided input on the client side.
 
-1. DocxtemplaterSimpleExample "Simple" example
-2. Docxtemplater(dynamic_fields_example) More complex example
+1. DocxtemplaterSimpleExample "Simple" example template
+2. Docxtemplater(dynamic_fields_example) More complex example template
 
 - (src/data.json / dtidata.json)
   Dummy data used for this template (self-explainatory enough).
