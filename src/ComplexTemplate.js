@@ -1,12 +1,13 @@
 import React from "react";
+
 import PizZip from "pizzip";
 import ImageModule from "docxtemplater-image-module";
 import Docxtemplater from "docxtemplater";
 import { saveAs } from "file-saver";
 import PizZipUtils from "pizzip/utils/index.js";
-import data from "./data.json";
+import complexComponentData from "./complexComponentData.json";
 
-const Docxtemplate = () => {
+const ComplexComponent = () => {
   const generateDocx = () => {
     // target input to extract the uploaded file.
     const docs = document.getElementById("doc");
@@ -28,6 +29,7 @@ const Docxtemplate = () => {
       opts.getImage = function (tagValue, tagName) {
         return new Promise(function (resolve, reject) {
           PizZipUtils.getBinaryContent(tagValue, function (error, content) {
+            console.log(tagValue);
             if (error) {
               return reject(error);
             }
@@ -36,7 +38,8 @@ const Docxtemplate = () => {
         });
       };
       opts.getSize = function (img, tagValue, tagName) {
-        // FOR IMAGE COMING FROM A URL (IF TAG VALUE IS AN ADDRESS) :
+        // console.log(img, tagValue, tagName);
+        // FOR IMAGE COMING FROM A URL (IF TAGVALUE IS AN ADDRESS) :
         // To use this feature, you have to be using docxtemplater async
         // (if you are calling setData(), you are not using async).
         return new Promise(function (resolve, reject) {
@@ -58,18 +61,21 @@ const Docxtemplate = () => {
       const imageModule = new ImageModule(opts);
       const zip = new PizZip(content);
       const doc = new Docxtemplater(zip, {
+        linebreak: true,
+        paragraphLoop: true,
         nullGetter: function () {
           return "";
         },
         modules: [imageModule],
       });
       /* Data rendering */
-      doc.resolveData(data).then(function () {
+      doc.resolveData(complexComponentData).then(function () {
         doc.render();
         const out = doc.getZip().generate({
           type: "blob",
           mimeType: docxType,
         });
+        console.log(doc);
 
         saveAs(out, "generated.docx");
       });
@@ -84,4 +90,4 @@ const Docxtemplate = () => {
   );
 };
 
-export default Docxtemplate;
+export default ComplexComponent;

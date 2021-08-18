@@ -1,12 +1,12 @@
 import React from "react";
 
 import Docxtemplate from "./Docxtemplate";
-import DTITComponent from "./DTIComponent";
+import ComplexComponent from "./ComplexTemplate";
 
 const App = () => {
   return (
     <>
-      <DTITComponent />
+      <ComplexComponent />
       {/* <Docxtemplate /> */}
     </>
   );

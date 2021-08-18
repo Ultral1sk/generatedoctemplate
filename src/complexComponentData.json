@@ -1,0 +1,141 @@
+{
+  "report_date": "15/12/2018",
+  "order_no": "000008",
+  "report_no": "000008",
+  "revision": "0",
+  "customer_name": "Test Customer",
+  "customer": [
+    {
+      "street": "Carlo Schmidt Allee 3",
+      "zipcode": "45127",
+      "city": "Dortmund",
+      "country": "Germany"
+    }
+  ],
+  "contact": [
+    {
+      "contact_prefix": "Mr",
+      "contact_first_name": "John",
+      "contact_last_name": "Doe",
+      "contact_phone": "+ 123456789",
+      "contact_email": "doe.j@gmail.com"
+    }
+  ],
+  "receive_date": "12/11/2021",
+  "operator_date": "03/04/2021",
+  "order_quantity": "2",
+  "report_comment": "some comment",
+  "custom_fields_order": [
+    { "label": "Previous Serial No", "value": "815" },
+    { "label": "Previous  No", "value": "987651-Cust_No" },
+    { "label": "Hardness", "value": "3352" },
+    { "label": "Material: Steel", "value": "12353" }
+  ],
+  "operator": "System A.",
+  "operator_level": "Some operator level",
+  "operator_certno": "RT-D 3 - 65468-421",
+  "inspector": "System A.",
+  "inspector_level": "Some inspector level",
+  "inspector_certno": "RT-D 3 - 65468-421",
+  "inspector_date": "05/05/2021",
+  "supervisor": "System A.",
+  "supervisor_level": "Some supervisor level",
+  "supervisor_certno": "RT-D 3 - 65468-421",
+  "supervisor_date": "03/02/2021",
+  "subject_name": "Test Pipe",
+  "subject_no": "TP-12345",
+  "subject_comment": "the subject comment",
+  "inspections": {
+    "information": [
+      {
+        "point_name": "TP_001",
+        "point_no": "Test point ",
+        "proceduralstandard": "1763 - 2;22018-01",
+        "inspectioninstruction": "Procedure B:2018-1",
+        "material_id": "",
+        "point_thickness": "3.00",
+        "welder_idf": "JJ",
+        "weld_process_idf": "WIG",
+        "heat_treat_idf": "Before",
+        "iqi_ach_idf": "W11",
+        "iqi_req_idf": "W8",
+        "diameter_nominal": "Nominal",
+        "wps_idf": "12"
+      }
+    ],
+    "results": [
+      {
+        "inspect_pos": "1",
+        "technique_no": "2",
+        "indications": "transverse crack, pore",
+        "test": "1",
+        "result": "Accepted",
+        "result_comment": "comment1"
+      },
+      {
+        "inspect_pos": "1",
+        "technique_no": "2",
+        "indications": "longitudinal crack, clustered porosity",
+        "result": "Rejected"
+      },
+      {
+        "inspect_pos": "2",
+        "technique_no": "2",
+        "indications": "longitudinal crack, clustered porosity",
+        "result": "Rejected"
+      }
+    ]
+  },
+  "techniques": [
+    {
+      "tecnique_no": "1",
+      "device_name": "Flat Panel Detector",
+      "device_model": "DRC 1024 NDT",
+      "device_serial_no": "Ser-123456",
+      "device_activity": "11.84 Bi",
+      "tube_voltage_kv": "120",
+      "tube_current_ma": "5",
+      "prefilter": ""
+    },
+    {
+      "tecnique_no": "2",
+      "device_name": " SE75",
+      "device_model": "SE-Source ",
+      "device_serial_no": "Ser-123456",
+      "device_activity": "13.84 Ci",
+      "tube_voltage_kv": "130",
+      "tube_current_ma": "6",
+      "prefilter": ""
+    }
+  ],
+  "dda": [
+    {
+      "device_name": "device_name",
+      "device_model": "model",
+      "device_serial_no": "002",
+      "calibration_procedure": "the procedure",
+      "resolution": "the resolution"
+    }
+  ],
+  "film": [
+    {
+      "film_manufacturer": "Warner Bros",
+      "film_designation": "designated survivor",
+      "exp_time": "expo_me"
+    }
+  ],
+  "images": [
+    {
+      "caption": "caption image 1",
+      "src": "https://cdn.pixabay.com/photo/2017/10/30/06/39/weld-2901572_960_720.jpg"
+    },
+    {
+      "caption": "caption image 2",
+      "src": "https://cdn.pixabay.com/photo/2013/03/01/18/51/arc-88073_960_720.jpg"
+    },
+    {
+      "caption": "caption image 3",
+      "src": "https://cdn.pixabay.com/photo/2013/03/01/19/36/soldering-88415_960_720.jpg"
+    }
+  ]
+}
